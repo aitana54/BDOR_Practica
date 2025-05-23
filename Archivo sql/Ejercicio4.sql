@@ -24,4 +24,15 @@ CREATE OR REPLACE TYPE BODY Producto_T AS
     BEGIN
         RETURN precio_base * (1 + impuesto/100);
     END;
+
+    ORDER MEMBER FUNCTION orden_producto (p Producto_t) RETURN INTEGER IS
+    BEGIN
+        IF precio_base < p.precio_base THEN
+            RETURN -1;
+        ELSIF precio_base > p.precio_base THEN
+            RETURN 1;
+        ELSE
+            RETURN 0;
+        ELSE IF;
+    END;
 END;
