@@ -8,16 +8,16 @@ CREATE OR REPLACE TYPE red_social_t AS OBJECT(
   ano_fundacion NUMBER,
   cotizacion_bolsa_millones NUMBER,
 
-  CONSTRUCTOR FUNCTION RED_SOCIAL_T(nombre VARCHAR2, usuarios NUMBER, ano NUMBER, cotizacion NUMBER) RETURN SELF AS RESULT,
-    MEMBER FUNCTION karma RETURN NUMBER,
-    MEMBER FUNCTION info_fundador RETURN VARCHAR2,
-    MAP MEMBER FUNCTION ordenar RETURN NUMBER
+  CONSTRUCTOR FUNCTION red_social_t(nombre VARCHAR2, usuarios NUMBER, ano NUMBER, cotizacion NUMBER) RETURN SELF AS RESULT,
+  MEMBER FUNCTION karma RETURN NUMBER,
+  MEMBER FUNCTION info_fundador RETURN VARCHAR2,
+  MAP MEMBER FUNCTION ordenar RETURN NUMBER
 );
 
 /
 
-CREATE OR REPLACE TYPE BODY RED_SOCIAL_T AS
-    CONSTRUCTOR FUNCTION RED_SOCIAL_T(nombre VARCHAR2, usuarios NUMBER, ano NUMBER, cotizacion NUMBER) RETURN SELF AS RESULT IS
+CREATE OR REPLACE TYPE BODY red_social_t AS
+    CONSTRUCTOR FUNCTION red_social_t(nombre VARCHAR2, usuarios NUMBER, ano NUMBER, cotizacion NUMBER) RETURN SELF AS RESULT IS
     BEGIN
         SELF.nombre := nombre;
         SELF.fundador := NULL;
@@ -42,5 +42,14 @@ CREATE OR REPLACE TYPE BODY RED_SOCIAL_T AS
     BEGIN
         RETURN cantidad_usuarios_millones;
     END;
+END;
+/
+
+--Prueba
+DECLARE
+  red red_social_t := red_social_t('Instagram', 1100, 2007, 1900);
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Karma: ' || red.karma);
+  DBMS_OUTPUT.PUT_LINE('Fundador: ' || red.info_fundador);
 END;
 /
