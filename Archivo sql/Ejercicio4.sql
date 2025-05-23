@@ -19,4 +19,9 @@ CREATE OR REPLACE TYPE BODY Producto_T AS
      BEGIN
         RETURN 'Producto: ' || nombre || ', Precio base: ' || precio_base || ', Impuesto: ' || impuesto || '%';
     END;
+
+    MEMBER FUNCTION precio_final RETURN NUMBER IS
+    BEGIN
+        RETURN precio_base * (1 + impuesto/100);
+    END;
 END;
