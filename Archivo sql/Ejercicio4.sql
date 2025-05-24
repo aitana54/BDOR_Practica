@@ -14,7 +14,7 @@ CREATE OR REPLACE TYPE Producto_t AS OBJECT(
 /
 
 --creación BODY
-CREATE OR REPLACE TYPE BODY Producto_T AS
+CREATE OR REPLACE TYPE BODY Producto_t AS
     MEMBER FUNCTION info_producto RETURN VARCHAR2 IS
      BEGIN
         RETURN 'Producto: ' || nombre || ', Precio base: ' || precio_base || ', Impuesto: ' || impuesto || '%';
@@ -39,7 +39,7 @@ END;
 
 /
 
-CREATE OR REPLACE TYPE Producto_Fresco_T UNDER Producto_T (
+CREATE OR REPLACE TYPE Producto_Fresco_t UNDER Producto_t (
     tipo_producto VARCHAR2(50),
     fecha_caducidad DATE,
 
