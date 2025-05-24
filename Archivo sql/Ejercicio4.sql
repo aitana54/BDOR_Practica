@@ -63,3 +63,15 @@ CREATE OR REPLACE TYPE BODY Producto_Fresco_t AS
         END IF;
     END;
 END;
+
+--Pruebas
+DECLARE
+    p1 Producto_t := Producto_t(1, 'Espinacas', 3.30, 21);
+    pf1 Producto_Fresco_t := Producto_Fresco_t(2, 'Yogur', 1.20, 21, 'Lácteo', TO_DATE('2025-05-01', 'YYYY-MM-DD'));
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(p1.info_producto);
+    DBMS_OUTPUT.PUT_LINE('Final: ' || p1.precio_final);
+
+    DBMS_OUTPUT.PUT_LINE(pf1.info_producto);
+    DBMS_OUTPUT.PUT_LINE(pf1.esta_caducado);
+END;
