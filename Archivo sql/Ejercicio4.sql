@@ -47,3 +47,19 @@ CREATE OR REPLACE TYPE Producto_Fresco_t UNDER Producto_t (
     MEMBER FUNCTION esta_caducado RETURN VARCHAR2
 );
 /
+
+CREATE OR REPLACE TYPE BODY Producto_Fresco_t AS
+    OVERRIDING MEMBER FUNCTION info_producto RETURN VARCHAR2 IS
+    BEGIN
+        RETURN SELF.nombre || ' (' || tipo_producto || '), caduca el ' || TO_CHAR(fecha_caducidad, 'DD-MM-YYYY');
+    END;
+
+    MEMBER FUNCTION esta_caducado RETURN VARCHAR2 IS
+    BEGIN
+        IF fecha_caducidad < SYSDATE THEN
+            RETURN 'Caducado';
+        ELSE
+            RETURN 'Aún válido';
+        END IF;
+    END;
+END;
