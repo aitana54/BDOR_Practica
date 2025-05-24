@@ -36,3 +36,14 @@ BEGIN
                     WHERE b.id = 2);
     WHERE a.id = 3;
 END;
+
+-- Selects
+-- Alumnos sin delegado
+SELECT nombre 
+FROM alumno 
+WHERE delegado IS NULL;
+
+-- Nombre del delegado del tercer alumno
+SELECT DEREF(delegado).nombre AS delegado_nombre 
+FROM alumno 
+WHERE id = 3;
