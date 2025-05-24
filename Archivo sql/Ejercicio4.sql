@@ -36,3 +36,14 @@ CREATE OR REPLACE TYPE BODY Producto_T AS
         ELSE IF;
     END;
 END;
+
+/
+
+CREATE OR REPLACE TYPE Producto_Fresco_T UNDER Producto_T (
+    tipo_producto VARCHAR2(50),
+    fecha_caducidad DATE,
+
+    OVERRIDING MEMBER FUNCTION info_producto RETURN VARCHAR2,
+    MEMBER FUNCTION esta_caducado RETURN VARCHAR2
+);
+/
